@@ -5,17 +5,31 @@ from transit_app_utils import pickle_to_json, uncompress_files, read_json_to_exc
 
 
 
-file = '20210522.pckl'
-compressed_files_folder = 'mtajan21'
+#file = '20210522.pckl'
+compressed_files_folder = 'mtajan19'
 
 
 class TransitApp:
     def __init__(self, folder_name=None):
-        self.folder_name = folder_name        
+        """
+            The class is initialized with the folder that has the compressed files
+        """
+        self.folder_name = folder_name     
 
+    # def _decorator(**args):
+    #     def run_job(self):
+    #         job1(self)
+    #         job2(self)
+    #         job3(self)
+    #         print("job running done...")
+    #     return run_job
+
+    
     def extract_zip_files(self):
         compressed_files = os.listdir(self.folder_name)
         for file in compressed_files:
+            #loops through all files in the 
+            # #compressed zip folder than call the uncompressed_file function
             uncompress_files(file)
 
             
@@ -31,7 +45,12 @@ class TransitApp:
         read_json_to_excel(json_files)
         print("Done converting")
 
-
+    
+    def run(self):
+        print("execution mode started... ")
+        # self.extract_zip_files()
+        # self.pickle_to_json()
+        self.prepare_metrics()
 
 
 new_work = TransitApp(compressed_files_folder)
@@ -40,4 +59,4 @@ new_work = TransitApp(compressed_files_folder)
 
 # new_work.pickle_to_json()
 
-new_work.prepare_metrics()
+new_work.run()
